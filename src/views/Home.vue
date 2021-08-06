@@ -1,18 +1,29 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <link rel="stylesheet" href="./magic.css" />
+    <h1 class="magictime">{{ timerCount }}</h1>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      timerCount: 30,
+    };
+  },
+
+  watch: {
+    timerCount: {
+      handler(value) {
+        if (value > 0) {
+          setTimeout(() => {
+            this.timerCount--;
+          }, 1000);
+        }
+      },
+      immediate: true,
+    },
   },
 };
 </script>
